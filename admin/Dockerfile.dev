@@ -5,4 +5,4 @@ COPY ./package-lock.json ./
 RUN npm install -g create-react-app@latest
 RUN npm install
 COPY . .
-CMD [ "npm", "run", "start" ]
+RUN npm run start
