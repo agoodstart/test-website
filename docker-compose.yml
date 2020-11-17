@@ -5,10 +5,19 @@ services:
     tty: true
     build:
       dockerfile: Dockerfile.dev
-      context: ./client
+      context: ./website
     volumes:
       - /app/node_modules
-      - ./client:/app
+      - ./website:/app
+  admin:
+    stdin_open: true
+    tty: true
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./admin
+    volumes:
+      - /app/node_modules
+      - ./admin:/app
   nginx:
     restart: always
     build:
