@@ -1,14 +1,16 @@
 version: '3'
 services: 
-  website:
-    stdin_open: true
-    tty: true
+  nginx:
+    restart: always
     build:
       dockerfile: Dockerfile.dev
-      context: ./website
-    volumes:
-      - /app/node_modules
-      - ./website:/app
+      context: ./nginx
+    ports:
+      - '80:80'
+      - '443:443'
+    links:
+      - 'website:website'
+      - 'admin:admin'
   admin:
     stdin_open: true
     tty: true
@@ -18,10 +20,21 @@ services:
     volumes:
       - /app/node_modules
       - ./admin:/app
-  nginx:
-    restart: always
+    ports:
+      - '3001:3001'
+    environment: 
+      - NODE_ENV=development
+      - PORT=3001
+  website:
+    stdin_open: true
+    tty: true
     build:
       dockerfile: Dockerfile.dev
-      context: ./nginx
+      context: ./website
+    volumes:
+      - /app/node_modules
+      - ./website:/app
     ports:
-      - '3050:80'
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development

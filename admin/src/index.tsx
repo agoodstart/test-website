@@ -3,10 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter, Route, useHistory } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+  <BrowserRouter>
+    <Route exact path="/login">
+      <App />
+    </Route>
+  </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

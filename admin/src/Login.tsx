@@ -146,6 +146,7 @@ export const Login = () => {
         });
       }
     return (
+      <div className="App">
       <form className={classes.container} noValidate autoComplete="off">
         <Card className={classes.card}>
           <CardHeader className={classes.header} title="Login App" />
@@ -189,5 +190,6 @@ export const Login = () => {
           </CardActions>
         </Card>
       </form>
+      </div>
     );
   }

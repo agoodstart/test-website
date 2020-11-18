@@ -3,6 +3,8 @@ WORKDIR /app
 COPY ./package.json ./
 COPY ./package-lock.json ./
 RUN npm install -g create-react-app@latest
+RUN npm install --save @types/react-router-dom
+RUN npm install --save react-router-dom
 RUN npm install
 COPY . .
-RUN npm run start
+CMD ["npm", "run", "start"]
